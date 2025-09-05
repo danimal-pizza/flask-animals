@@ -1,14 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for
+from tier import Tier
+import logging
 
 app = Flask(__name__)
+app.debug = True
 DATEIPFAD = 'tiere.txt'
 
+app.logger.setLevel(logging.DEBUG)   # DEBUG, INFO, WARNING, ERROR, CRITICAL
 
 def lade_tiere():
     tiere = []
     try:
         with open(DATEIPFAD, 'r', encoding='utf-8') as f:
             for zeile in f:
+                app.logger.debug(zeile)
                 name, rasse = zeile.strip().split(',')
                 tiere.append({'name': name, 'rasse': rasse})
     except FileNotFoundError:
@@ -34,7 +39,7 @@ def neu():
         name = request.form['name']
         rasse = request.form['rasse']
         tiere = lade_tiere()
-        tiere.append({'name': name, 'rasse': rasse})
+        tiere.append(Tier(name, rasse))
         speichere_tiere(tiere)
         return redirect(url_for('index'))
     return render_template('create.html')
