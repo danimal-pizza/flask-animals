@@ -1,0 +1,4 @@
+Name,Rasse
+Bella,Hund
+Rolf,Kaninchen
+Mieze,Katze

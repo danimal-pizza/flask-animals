@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tierliste</title>
+</head>
+<body>
+    <h1>Alle Tiere</h1>
+    <a href="{{ url_for('neu') }}">Neues Tier hinzufügen</a>
+    <ul>
+        {% for tier in tiere %}
+        <li>
+            {{ tier.name }} ({{ tier.rasse }})
+            <a href="{{ url_for('bearbeiten', name=tier.name) }}">Bearbeiten</a>
+            <form action="{{ url_for('loeschen', name=tier.name) }}" method="post" style="display:inline;">
+                <button type="submit">Löschen</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

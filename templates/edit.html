@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tier bearbeiten</title>
+</head>
+<body>
+    <h1>Tier bearbeiten</h1>
+    <form method="post">
+        Name: <input type="text" name="name" value="{{ tier.name }}"><br>
+        Rasse: <input type="text" name="rasse" value="{{ tier.rasse }}"><br>
+        <button type="submit">Aktualisieren</button>
+    </form>
+    <a href="{{ url_for('index') }}">Zurück zur Liste</a>
+</body>
+</html>
